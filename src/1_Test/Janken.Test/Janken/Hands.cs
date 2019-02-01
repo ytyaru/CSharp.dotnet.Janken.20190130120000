@@ -5,6 +5,10 @@ namespace Janken
 {
     public class Hands
     {
+//        private static Hands instance;
+        public static Hands Instance { get; } = new Hands();
+        private Hands() {}
+
         public enum Unicode
         {
             Fist = 0x270A,

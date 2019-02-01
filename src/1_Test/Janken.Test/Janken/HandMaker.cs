@@ -37,7 +37,8 @@ namespace Janken
         /// <summary>ランダムな手を返す</summary>
         /// <returns>ランダムな手</returns>
         public Hands.Unicode Random() {            
-            return new Hands().Random(new RandomNumberGenerator());
+//            return new Hands().Random(new RandomNumberGenerator());
+            return Hands.Instance.Random(new RandomNumberGenerator());
         }
 
     }

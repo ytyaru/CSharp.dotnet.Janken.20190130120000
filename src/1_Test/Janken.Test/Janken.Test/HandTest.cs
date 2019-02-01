@@ -25,8 +25,7 @@ namespace Tests
         [TestCase(Janken.Hands.Unicode.Victory, Janken.Hands.Unicode.Fist)]
         public void Next_Match_ReturnNextValue(Janken.Hands.Unicode input, Janken.Hands.Unicode expected)
         {
-            var hands = new Janken.Hands();
-            var actual = hands.Next(input);
+            var actual = Janken.Hands.Instance.Next(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -35,8 +34,7 @@ namespace Tests
         [TestCase(Janken.Hands.Unicode.Victory, Janken.Hands.Unicode.Hand)]
         public void Previous_Match_ReturnNextValue(Janken.Hands.Unicode input, Janken.Hands.Unicode expected)
         {
-            var hands = new Janken.Hands();
-            var actual = hands.Previous(input);
+            var actual = Janken.Hands.Instance.Previous(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -45,8 +43,7 @@ namespace Tests
         [TestCase(Janken.Hands.Unicode.Victory, Janken.Hands.Unicode.Fist)]
         public void Winable_Match_ReturnNextValue(Janken.Hands.Unicode input, Janken.Hands.Unicode expected)
         {
-            var hands = new Janken.Hands();
-            var actual = hands.Winable(input);
+            var actual = Janken.Hands.Instance.Winable(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -55,8 +52,7 @@ namespace Tests
         [TestCase(Janken.Hands.Unicode.Victory, Janken.Hands.Unicode.Hand)]
         public void Losable_Match_ReturnNextValue(Janken.Hands.Unicode input, Janken.Hands.Unicode expected)
         {
-            var hands = new Janken.Hands();
-            var actual = hands.Losable(input);
+            var actual = Janken.Hands.Instance.Losable(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -65,8 +61,7 @@ namespace Tests
         [TestCase(Janken.Hands.Unicode.Victory, Janken.Hands.Unicode.Victory)]
         public void Drawable_Match_ReturnNextValue(Janken.Hands.Unicode input, Janken.Hands.Unicode expected)
         {
-            var hands = new Janken.Hands();
-            var actual = hands.Drawable(input);
+            var actual = Janken.Hands.Instance.Drawable(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -77,9 +72,8 @@ namespace Tests
         {
             var mock = new Mock<IRandomNumberGenerator>();
             mock.Setup(x => x.Next(Enum.GetNames(typeof(Hands.Unicode)).Length)).Returns(input);
-            var hands = new Hands();
-            var actual = hands.Random(mock.Object);
-            Assert.AreEqual(expected, actual);
+            var actual = Janken.Hands.Instance.Random(mock.Object);
+           Assert.AreEqual(expected, actual);
         }
     }
 }
