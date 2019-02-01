@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Janken
 {
-    class HandMaker {
+    public class HandMaker {
         /*
         /// <summary>ランダムな手を返す</summary>
         /// <returns>ランダムな手</returns>
@@ -18,7 +18,7 @@ namespace Janken
             }
         }
         */
-
+        /*
         /// <summary>ランダムな手を返す</summary>
         /// <returns>ランダムな手</returns>
         public Hands.Unicode Random() {
@@ -27,5 +27,18 @@ namespace Janken
             var hand = (int)Hands.Unicode.Fist + random;
             return (Hands.Unicode)Enum.ToObject(typeof(Hands.Unicode), hand);
         }
+        /// <summary>ランダムな手を返す</summary>
+        /// <returns>ランダムな手</returns>
+        public Hands.Unicode Random(IRandomNumberGenerator randomNumberGenerator) {
+            var hand = (int)Hands.Unicode.Fist + randomNumberGenerator.Next();
+            return (Hands.Unicode)Enum.ToObject(typeof(Hands.Unicode), hand);
+        }
+        */
+        /// <summary>ランダムな手を返す</summary>
+        /// <returns>ランダムな手</returns>
+        public Hands.Unicode Random() {            
+            return new Hands().Random(new RandomNumberGenerator());
+        }
+
     }
 }

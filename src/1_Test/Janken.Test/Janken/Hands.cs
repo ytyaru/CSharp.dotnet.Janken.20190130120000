@@ -18,12 +18,9 @@ namespace Janken
         {
             // https://stackoverflow.com/questions/642542/how-to-get-next-or-previous-enum-value-in-c-sharp
             // https://stackoverflow.com/questions/11222256/string-does-not-contain-a-definition-for-cast
-            System.Console.WriteLine(hand.ToString());
             System.Collections.Generic.IEnumerable<Hands.Unicode> hands = Enum.GetValues(typeof(Hands.Unicode)).Cast<Hands.Unicode>();
             if (hand == Enum.GetValues(typeof(Hands.Unicode)).Cast<Hands.Unicode>().Last()) { return hands.First(); }
             return hands.Where(e => (int)e > (int)hand).OrderBy(e => e).First();
-            //return Enum.GetValues(typeof(Hands.Unicode)).Cast<Hands.Unicode>()
-            //        .Where(e => (int)e > (int)hand).OrderBy(e => e).First();
         }
         /// <summary>Unicode表における一つ前のcodeを返す</summary>
         /// <param name="hand">対象の手</param>
@@ -46,5 +43,11 @@ namespace Janken
         /// <param name="hand">対象の手</param>
         /// <returns>引き分ける手</returns>
         public Hands.Unicode Drawable(Hands.Unicode hand) { return hand; }
-    }
+         /// <summary>ランダムな手を返す</summary>
+        /// <returns>ランダムな手</returns>
+        public Hands.Unicode Random(IRandomNumberGenerator randomNumberGenerator) {
+            var hand = (int)Hands.Unicode.Fist + randomNumberGenerator.Next(Enum.GetNames(typeof(Hands.Unicode)).Length);
+            return (Hands.Unicode)Enum.ToObject(typeof(Hands.Unicode), hand);
+        }
+   }
 }

@@ -1,5 +1,9 @@
 using NUnit.Framework;
+using Moq;
 using Janken;
+﻿using System; // Enum
+//using System.Linq;
+//using System.Collections.Generic;
 
 namespace Tests
 {
@@ -63,6 +67,18 @@ namespace Tests
         {
             var hands = new Janken.Hands();
             var actual = hands.Drawable(input);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, Janken.Hands.Unicode.Fist)]
+        [TestCase(1, Janken.Hands.Unicode.Hand)]
+        [TestCase(2, Janken.Hands.Unicode.Victory)]
+        public void Random_Match_ReturnNextValue(int input, Janken.Hands.Unicode expected)
+        {
+            var mock = new Mock<IRandomNumberGenerator>();
+            mock.Setup(x => x.Next(Enum.GetNames(typeof(Hands.Unicode)).Length)).Returns(input);
+            var hands = new Hands();
+            var actual = hands.Random(mock.Object);
             Assert.AreEqual(expected, actual);
         }
     }
